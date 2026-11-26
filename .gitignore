@@ -74,6 +74,6 @@ coverage/
 **/android/app/profile/
 **/android/app/release/
 
-# Logs
-logs/
+# Runtime log dirs / files（不要误伤源码包如 Folio-Client/lib/logs）
+/logs/
 *.log
