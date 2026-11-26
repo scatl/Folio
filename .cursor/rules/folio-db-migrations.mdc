@@ -1,0 +1,19 @@
+---
+description: 服务端改表结构时新增 Flyway 迁移，不改已有的 V1 脚本
+alwaysApply: true
+---
+
+# 数据库迁移
+
+服务端要改表、列、索引或约束时，新增 `Folio-Server/app/src/main/resources/db/migration/` 里的下一个版本，例如已有 `V1__create_catalog.sql` 就写 `V2__短描述.sql`。
+
+不要修改已经存在的 `V1__*.sql`，也不要改 `app/build/` 里的迁移副本。用户明确说「合并进 V1」「直接改 V1」或同类指示时，才可以改 `V1`。
+
+```sql
+-- 不好：往 V1__create_catalog.sql 里加列
+
+-- 好：新文件 V2__work_sort_title.sql
+ALTER TABLE works ADD COLUMN sort_title VARCHAR(255) NULL;
+```
+
+实体类与迁移一起改。只改查询或代码、不动表结构时，不要新增迁移。

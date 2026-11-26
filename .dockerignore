@@ -1,0 +1,14 @@
+**/node_modules
+**/dist
+**/.gradle
+**/build
+**/.idea
+**/.kotlin
+**/.git
+**/*.iml
+Folio-Web/dist
+Folio-Server/app/build
+Folio-Server/.gradle
+Folio-Server/build
+*.md
+agent-transcripts

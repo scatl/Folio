@@ -1,0 +1,44 @@
+# 本地可用 SSH 隧道：ssh -L 3306:127.0.0.1:3306 user@host
+# 密钥不写进仓库。刮削相关选项在登录后的设置页，保存到数据库。
+spring:
+  application:
+    name: folio-server
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/folio?useUnicode=true&characterEncoding=UTF-8&connectionTimeZone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:folio}
+    password: ${SPRING_DATASOURCE_PASSWORD:folio}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+
+server:
+  port: ${SERVER_PORT:32700}
+  servlet:
+    session:
+      timeout: 14d
+      cookie:
+        name: FOLIOSESSION
+        http-only: true
+        same-site: lax
+
+logging:
+  # 容器入口会把 FOLIO_LOG_FILE 设为 /data/logs/folio.log。留空则只打控制台。
+  file:
+    name: ${FOLIO_LOG_FILE:}
+  logback:
+    rollingpolicy:
+      max-history: 7
+      clean-history-on-start: true
+  level:
+    com.scatl.folio.library: INFO
+    com.scatl.folio.provider: INFO
+
+folio:
+  library:
+    ffprobe: ${FOLIO_FFPROBE:ffprobe}
+    ffmpeg: ${FOLIO_FFMPEG:ffmpeg}

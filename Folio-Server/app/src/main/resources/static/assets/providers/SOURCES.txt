@@ -1,0 +1,43 @@
+Provider logo sources (official / brand-approved where available)
+
+tmdb.svg
+  https://www.themoviedb.org/about/logos-attribution
+  Asset: Primary short (blue) SVG — TM/DB stacked icon
+
+imdb.svg
+  https://brand.imdb.com/
+  Toolkit: IMDb_BrandToolkit_061925.zip → IMDb/IMDb SVG/IMDb_Square_GoldBKG.svg
+
+rt.svg
+  Official tomato mark from Rotten Tomatoes editorial:
+  https://editorial.rottentomatoes.com/wp-content/themes/rt-editorial/assets/images/rt-tomato-logo.svg
+
+rt-audience.svg
+  Original popcorn mark drawn for Folio, used only to tell the audience score apart from the tomato.
+
+metacritic.svg
+  Official circular “m” mark cropped from Metacritic wordmark:
+  https://commons.wikimedia.org/wiki/File:Metacritic_logo.svg
+  (sourced from https://www.metacritic.com, 2023)
+
+facebook.svg
+  Wikimedia Commons: File:2023_Facebook_icon.svg (source: Facebook)
+
+instagram.svg
+  Wikimedia Commons: File:Instagram_logo_2016.svg (source: Instagram / Meta)
+
+twitter.svg
+  Geometry from Wikimedia Commons File:X_logo_2023.svg (source: X / Twitter);
+  fill set to white for dark UI backgrounds.
+
+wikidata.svg
+  Wikimedia Commons: File:Wikidata-logo.svg (Wikimedia / Wikidata)
+
+tvdb.png
+  Wikimedia Commons: File:TheTVDB.com_Logo.png (sourced from TheTVDB branding)
+
+freebase.svg
+  Wikimedia Commons: File:Freebase Logo optimised.svg (Google Freebase)
+
+tvrage
+  No redistributable official logo located (service discontinued).

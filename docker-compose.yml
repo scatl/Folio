@@ -1,0 +1,23 @@
+# 可选：SSH / 支持 compose 的环境一键启动（仍是「一个」folio 服务，库在容器内）
+services:
+  folio:
+    image: folio:${FOLIO_TAG:-0.1.0}
+    build: .
+    container_name: folio
+    ports:
+      - "${SERVER_PORT:-32700}:32700"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-folio}
+      MYSQL_USER: ${MYSQL_USER:-folio}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-folio}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-folio}
+      JAVA_OPTS: ${JAVA_OPTS:--Xms256m -Xmx512m}
+      TZ: ${TZ:-Asia/Shanghai}
+    volumes:
+      - folio_data:/data
+      # 按群晖实际共享文件夹修改左侧路径
+      - ${MEDIA_HOST_PATH:-/volume1/video}:/media:ro
+    restart: unless-stopped
+
+volumes:
+  folio_data:

@@ -1,0 +1,5 @@
+ALTER TABLE app_users
+    ADD COLUMN role VARCHAR(16) NOT NULL DEFAULT 'USER',
+    ADD COLUMN disabled TINYINT(1) NOT NULL DEFAULT 0;
+
+UPDATE app_users SET role = 'ADMIN';

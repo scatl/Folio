@@ -1,0 +1,45 @@
+---
+description: 新增 Web 前端路由时必须同步 SpaForwardController，否则刷新会 404
+globs: Folio-Web/src/router/**/*,Folio-Server/**/SpaForwardController.kt,Folio-Web/src/views/**/*.vue
+alwaysApply: false
+---
+
+# Web SPA 路由与 SpaForwardController
+
+Folio-Web 使用 Vue history 模式，构建产物由 Folio-Server 同端口托管。站内 `router.push` 正常，但**刷新 / 直开链接**会向 Spring 请求该路径；未转发时落到 404「接口不存在」。
+
+## 必须同步
+
+在 `Folio-Web/src/router/index.ts` **新增可直链打开的页面路由**时，同步改：
+
+`Folio-Server/app/src/main/kotlin/com/scatl/folio/config/SpaForwardController.kt`
+
+把对应 path 加进 `@GetMapping`（有动态段用 `/**`，无尾斜杠的静态页可同时写 `/path` 与 `/path/`）。
+
+```kotlin
+// 不好：只加了 Vue 路由 /collections/:id，未改 SpaForwardController
+
+// 好：Vue 有 /collections/:id，同时 SpaForwardController 含 "/collections/**"
+```
+
+## 不要转发
+
+- `/api/**`、静态资源（`/assets/**` 等）
+- 仅 hash 或不会出现在地址栏整页刷新的内部状态
+
+## 现有对照（增路由时核对名单是否仍覆盖）
+
+| Vue 路由 | SpaForward |
+|----------|------------|
+| `/login` | `/login`, `/login/` |
+| `/tasks` | `/tasks`, `/tasks/` |
+| `/settings` | `/settings`, `/settings/` |
+| `/logs` | `/logs`, `/logs/` |
+| `/review` | `/review`, `/review/` |
+| `/works/...` | `/works/**` |
+| `/collections/...` | `/collections/**` |
+| `/people/...` | `/people/**` |
+| `/play/:fileId` | `/play/**` |
+| `/` | 一般不必（直接 index.html） |
+
+本地 `vite dev` 有自己的 history fallback，**测不出**漏配；一体部署 / 打进 Server 后刷新才会暴露。
