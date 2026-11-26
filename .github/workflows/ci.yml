@@ -56,11 +56,5 @@ jobs:
 
       - name: Build release APK
         working-directory: Folio-Client
+        # PR 仅验证可编译；无正式密钥时用 debug 签名。发版见 release.yml。
         run: flutter build apk --release
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: folio-apk
-          path: Folio-Client/build/app/outputs/flutter-apk/*.apk
-          if-no-files-found: error

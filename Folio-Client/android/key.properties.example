@@ -1,0 +1,5 @@
+storePassword=your-store-password
+keyPassword=your-key-password
+keyAlias=your-alias
+# 相对 android/app/；仓库根下 Folio-Client/keystore-release.jks 用下面这一行
+storeFile=../../keystore-release.jks
