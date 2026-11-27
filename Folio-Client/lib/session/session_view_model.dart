@@ -40,14 +40,14 @@ class SessionViewModel extends Notifier<SessionUiState> {
 
   Future<void> _bootstrap() async {
     var serverUrl = '';
-    var username = 'folio';
+    var username = '';
     try {
       final prefs = await SharedPreferences.getInstance();
       final dir = await getApplicationSupportDirectory();
       _prefs = prefs;
       await _api.usePersistentCookies('${dir.path}/cookies');
       serverUrl = prefs.getString(_serverKey) ?? '';
-      username = prefs.getString(_usernameKey) ?? 'folio';
+      username = prefs.getString(_usernameKey) ?? '';
       if (serverUrl.isNotEmpty) {
         _api.use(ServerConnection.parse(serverUrl));
       }

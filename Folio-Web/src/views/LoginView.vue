@@ -10,7 +10,7 @@ const TILES_PER_ROW = 16
 const router = useRouter()
 const route = useRoute()
 
-const username = ref('folio')
+const username = ref('')
 const password = ref('')
 const showPassword = ref(false)
 const submitting = ref(false)
