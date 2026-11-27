@@ -5,7 +5,7 @@ class SessionUiState {
     this.bootstrapping = true,
     this.signedIn = false,
     this.serverUrl = '',
-    this.username = 'folio',
+    this.username = '',
     this.userId = 0,
     this.role = 'USER',
     this.libraries = const [],
